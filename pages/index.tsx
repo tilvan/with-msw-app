@@ -17,8 +17,9 @@ export default function Home({ book }: Props) {
 
   return (
     <div>
-      <img src={book.imageUrl} alt={book.title} width="250" />
-      <h1>{book.title}</h1>
+      <img src={book.imageUrl} alt={book.name} width="250" />
+      <h1>{book.name}</h1>
+      <p>{book.author}</p>
       <p>{book.description}</p>
       <button onClick={handleGetReviews}>Load reviews</button>
       {reviews && (
@@ -37,7 +38,7 @@ export default function Home({ book }: Props) {
 
 export async function getServerSideProps() {
   // Server-side requests are mocked by `mocks/server.ts`.
-  const res = await fetch("https://my.backend/book");
+  const res = await fetch("https://simple-books-api.glitch.me/books/1");
   const book = await res.json();
 
   return {
